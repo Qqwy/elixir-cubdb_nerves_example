@@ -25,7 +25,7 @@ defmodule CubdbNervesExample.DB do
   end
 
   def child_spec(_) do
-    %{id: __MODULE__, start: {CubDB, :start_link, [Application.get_env(:wattcher, :dsmr_db_location, "data/dsmr"), [auto_file_sync: true, auto_compact: true], [name: __MODULE__]]}}
+    %{id: __MODULE__, start: {CubDB, :start_link, [Application.get_env(:cubdb_nerves_example, :dsmr_db_location, "data/dsmr"), [auto_file_sync: true, auto_compact: true], [name: __MODULE__]]}}
   end
 
   def get_state do
