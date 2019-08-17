@@ -46,6 +46,7 @@ defmodule CubdbNervesExample.MixProject do
 
       # Project-specific dependencies for all targets:
       {:solution, "~> 0.2.1"},     # Convenience during error handling (ok/error monad)
+      {:exactor, "~> 2.2"},        # Simplified GenServer creation
       {:cubdb, "~> 0.10.0"},       # Simple schemaless DB for embedded systems
 
       # Dependencies for all targets except :host

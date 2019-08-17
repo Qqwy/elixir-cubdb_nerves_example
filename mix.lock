@@ -2,6 +2,7 @@
   "cubdb": {:hex, :cubdb, "0.10.0", "b4fc5483afd8cb320ad9abc2ea89bb3132f41bb859f1f7981abe1d2565987da5", [:mix], [], "hexpm"},
   "dns": {:hex, :dns, "2.1.2", "81c46d39f7934f0e73368355126e4266762cf227ba61d5889635d83b2d64a493", [:mix], [{:socket, "~> 0.3.13", [hex: :socket, repo: "hexpm", optional: false]}], "hexpm"},
   "elixir_make": {:hex, :elixir_make, "0.6.0", "38349f3e29aff4864352084fc736fa7fa0f2995a819a737554f7ebd28b85aaab", [:mix], [], "hexpm"},
+  "exactor": {:hex, :exactor, "2.2.4", "5efb4ddeb2c48d9a1d7c9b465a6fffdd82300eb9618ece5d34c3334d5d7245b1", [:mix], [], "hexpm"},
   "mdns": {:hex, :mdns, "1.0.3", "f08414daf5636bf5cd364611e838818e9250c91a3282a817ad9174b03e757401", [:mix], [{:dns, "~> 2.0", [hex: :dns, repo: "hexpm", optional: false]}], "hexpm"},
   "muontrap": {:hex, :muontrap, "0.4.4", "61b676605205d59f418bee65613e1b88368ee5281e141fbc81563954037667f6", [:make, :mix], [{:elixir_make, "~> 0.6", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"},
   "nerves": {:hex, :nerves, "1.5.1", "07079342db3a03d19694118a93f220359fbd94b6e174b98d1ea2709db9e81da9", [:mix], [{:distillery, "~> 2.1", [hex: :distillery, repo: "hexpm", optional: true]}, {:jason, "~> 1.0", [hex: :jason, repo: "hexpm", optional: true]}], "hexpm"},

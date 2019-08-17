@@ -1,6 +1,6 @@
 defmodule CubdbNervesExample.DB do
-  require Solution
-  import Solution
+
+  require Logger
 
   @moduledoc """
   A wrapper of CubDB, as used to store telegrams,
@@ -15,8 +15,6 @@ defmodule CubdbNervesExample.DB do
   Instead of using the CubDB's functions directly,
   other parts of the application ought to use the functions this module exports.
   """
-
-  alias CubdbNervesExample.Telegram
 
   defmodule State do
     defstruct [last_processed_timestamp: nil]
@@ -43,6 +41,7 @@ defmodule CubdbNervesExample.DB do
   end
 
   def put_telegram(telegram = %{}) do
+    Logger.debug("Putting Telegram `#{inspect(telegram)}`.")
     CubDB.put(__MODULE__, {:telegram, telegram.timestamp}, telegram)
   end
 
@@ -53,8 +52,8 @@ defmodule CubdbNervesExample.DB do
   `reducer` receives as input a `%Telegram{}` and `%State{}` and should return a new `%State{}`.
   """
   def select_unprocessed_telegrams(reducer) do
-    state = get_state
-    monoidal_reducer = {state, fn {k, v}, acc -> reducer.(v, acc) end}
+    state = get_state()
+    monoidal_reducer = {state, fn {_, v}, acc -> reducer.(v, acc) end}
   {:ok, new_state} = select_telegrams_newer_than(state.last_processed_timestamp, monoidal_reducer)
     put_state(new_state)
   end
@@ -71,7 +70,7 @@ defmodule CubdbNervesExample.DB do
   Use this function to check how many rows the database currently contains.
   """
   def count_db_rows do
-    CubDB.select(__MODULE__, reduce: {0, fn x, acc -> acc + 1 end})
+    CubDB.select(__MODULE__, reduce: {0, fn _, acc -> acc + 1 end})
   end
 
 
@@ -80,8 +79,8 @@ defmodule CubdbNervesExample.DB do
   """
   def count_telegrams do
     CubDB.select(__MODULE__,
-      min_key: {{:telegram, timestamp}, :excluded},
-      max_key: {:telegram, timestamp, nil},
-      reduce: {0, fn x, acc -> acc + 1 end})
+      min_key: {{:telegram, nil}, :excluded},
+      max_key: {:telegram, nil, nil},
+      reduce: {0, fn _, acc -> acc + 1 end})
   end
 end
